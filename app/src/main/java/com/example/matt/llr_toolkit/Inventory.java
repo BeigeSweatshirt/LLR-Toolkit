@@ -2,52 +2,27 @@ package com.example.matt.llr_toolkit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class Inventory extends AppCompatActivity {
+    private static final String TAG = "Inventory";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final Intent intent = new Intent(this, InventoryAdd.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Inventory");
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent);
-            }
-        });
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#ffffff'>Inventory </font>"));
+        Log.d(TAG, "Inventory Page Loaded");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inventory, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void fabClick(View view) {
+        Intent intent = new Intent(this, TabLayoutActivity.class);
+        startActivity(intent);
     }
 }
